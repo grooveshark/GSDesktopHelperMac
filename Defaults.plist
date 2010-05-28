@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SongToastKey</key>
+	<dict>
+		<key>Code</key>
+		<integer>44</integer>
+		<key>Modifier</key>
+		<integer>4096</integer>
+	</dict>
+	<key>ShuffleKey</key>
+	<dict>
+		<key>Code</key>
+		<integer>50</integer>
+		<key>Modifier</key>
+		<integer>4096</integer>
+	</dict>
+	<key>PreviousKey</key>
+	<dict>
+		<key>Code</key>
+		<integer>43</integer>
+		<key>Modifier</key>
+		<integer>4096</integer>
+	</dict>
+	<key>PlayPauseKey</key>
+	<dict>
+		<key>Code</key>
+		<integer>24</integer>
+		<key>Modifier</key>
+		<integer>4096</integer>
+	</dict>
+	<key>NextKey</key>
+	<dict>
+		<key>Code</key>
+		<integer>47</integer>
+		<key>Modifier</key>
+		<string>4096</string>
+	</dict>
+	<key>FavoriteKey</key>
+	<dict>
+		<key>Code</key>
+		<integer>39</integer>
+		<key>Modifier</key>
+		<integer>4096</integer>
+	</dict>
+	<key>EnableGlobalKeys</key>
+	<true/>
+	<key>HasLaunchedOnce</key>
+	<false/>
+</dict>
+</plist>

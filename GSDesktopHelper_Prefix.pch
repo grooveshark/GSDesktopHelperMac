@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'GSDesktopHelper' target in the 'GSDesktopHelper' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif
