@@ -155,6 +155,22 @@ OSStatus MyHotKeyHandler(EventHandlerCallRef nextHandler, EventRef theEvent, voi
 	}
 }
 
+- (void)registerMediaKeys:(BOOL)registerKeys {
+	if (registerKeys == YES) {
+		if (mediaKeyRegistered == NO) {
+			mediaKeyRegistered = YES;
+			[[NSUserDefaults standardUserDefaults] setBool:1 forKey:@"EnableMediaKeys"];
+			[mi_mediaKeys setState:NSOnState];
+		}
+	} else if (registerKeys == NO) {
+		if (mediaKeyRegistered == YES) {
+			mediaKeyRegistered = NO;
+			[[NSUserDefaults standardUserDefaults] setBool:0 forKey:@"EnableMediaKeys"];
+			[mi_mediaKeys setState:NSOffState];
+		}
+	}
+}
+
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
 	// Insert code here to initialize your application
 	bundlePath = [[NSBundle mainBundle] bundlePath];
@@ -172,6 +188,7 @@ OSStatus MyHotKeyHandler(EventHandlerCallRef nextHandler, EventRef theEvent, voi
 	[statusItem setMenu:statusMenu];
 	hotKeyRegistered = NO;
 	[self registerHotKeys:[[NSUserDefaults standardUserDefaults] boolForKey:@"EnableGlobalKeys"]];
+	[self registerMediaKeys:[[NSUserDefaults standardUserDefaults] boolForKey:@"EnableMediaKeys"]];
 	if (![[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]) {
 		[mi_firstLaunch makeKeyAndOrderFront:self];
 		[[NSUserDefaults standardUserDefaults] setBool:1 forKey:@"HasLaunchedOnce"];
@@ -202,10 +219,13 @@ OSStatus MyHotKeyHandler(EventHandlerCallRef nextHandler, EventRef theEvent, voi
 }
 
 - (IBAction)mediaKeys:(id)sender {
-	NSLog(@"%@", @"(Hopefully) Allowing Use via Media Keys");
-	//This seems broken in 10.6
-	//Making it a lower priority
-	//TODO: Terin Stock.
+	if ([mi_mediaKeys state] == NSOffState) {
+		[self registerMediaKeys:YES];
+	} else {
+		[self registerMediaKeys:NO];
+	}
+	if ([[NSUserDefaults standardUserDefaults] synchronize]) {
+	}
 }
 
 - (IBAction)globalKeys:(id)sender {
@@ -222,6 +242,10 @@ OSStatus MyHotKeyHandler(EventHandlerCallRef nextHandler, EventRef theEvent, voi
 	//Not Yet Created
 	//But probably simple to support.
 	//TODO: Terin Stock
+}
+
+- (void)printToAPIFile:(NSString *)withAction {
+	printToAPIFile(withAction);
 }
 
 @end

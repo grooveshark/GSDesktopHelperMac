@@ -18,6 +18,7 @@
 	IBOutlet NSMenuItem *mi_globalKeys;
 	IBOutlet NSWindow *mi_firstLaunch;
 	BOOL hotKeyRegistered;
+	BOOL mediaKeyRegistered;
 	BOOL loadAtLogin;
 	BOOL firstLaunch;
 	NSString *bundlePath;
@@ -28,5 +29,6 @@
 - (IBAction)mediaKeys:(id)sender;
 - (IBAction)globalKeys:(id)sender;
 - (void)registerHotKeys:(BOOL)registerKeys;
+- (void)printToAPIFile:(NSString *)withAction;
 
 @end

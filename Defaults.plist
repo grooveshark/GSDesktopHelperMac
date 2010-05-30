@@ -46,6 +46,8 @@
 	</dict>
 	<key>EnableGlobalKeys</key>
 	<true/>
+	<key>EnableMediaKeys</key>
+	<true/>
 	<key>HasLaunchedOnce</key>
 	<false/>
 </dict>

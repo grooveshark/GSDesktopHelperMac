@@ -12,6 +12,7 @@
 		03036A1511AE1D6F006214C8 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 03036A1411AE1D6F006214C8 /* dsa_pub.pem */; };
 		03931B3211ABFD00002E1724 /* Defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 03931B3111ABFD00002E1724 /* Defaults.plist */; };
 		03C530C111B03D6900AD3A2E /* version.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 03C530C011B03D6900AD3A2E /* version.xcconfig */; };
+		03CA03FE11B2135D00836DF4 /* GSApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CA03FD11B2135D00836DF4 /* GSApplication.m */; };
 		03EA2DBE11A8C7C00056AD8A /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03EA2DBD11A8C7C00056AD8A /* Carbon.framework */; };
 		03EA2F0311A9D8860056AD8A /* gs16.png in Resources */ = {isa = PBXBuildFile; fileRef = 03EA2F0211A9D8860056AD8A /* gs16.png */; };
 		03EA2F0511A9D8940056AD8A /* Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 03EA2F0411A9D8940056AD8A /* Icon.icns */; };
@@ -40,6 +41,8 @@
 		03036A1411AE1D6F006214C8 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		03931B3111ABFD00002E1724 /* Defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Defaults.plist; sourceTree = "<group>"; };
 		03C530C011B03D6900AD3A2E /* version.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = version.xcconfig; sourceTree = "<group>"; };
+		03CA03FC11B2135D00836DF4 /* GSApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSApplication.h; sourceTree = "<group>"; };
+		03CA03FD11B2135D00836DF4 /* GSApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSApplication.m; sourceTree = "<group>"; };
 		03EA2DBD11A8C7C00056AD8A /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		03EA2F0211A9D8860056AD8A /* gs16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gs16.png; sourceTree = "<group>"; };
 		03EA2F0411A9D8940056AD8A /* Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Icon.icns; sourceTree = "<group>"; };
@@ -125,6 +128,8 @@
 			children = (
 				256AC3F00F4B6AF500CF3369 /* GSDesktopHelper_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
+				03CA03FC11B2135D00836DF4 /* GSApplication.h */,
+				03CA03FD11B2135D00836DF4 /* GSApplication.m */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -222,7 +227,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "GIT_BIN=\"/usr/local/git/bin/git\"\nBUILD_NUMBER=`${GIT_BIN} rev-parse --short HEAD`\n\necho \"CURRENT_PROJECT_VERSION = ${BUILD_NUMBER}\" > version.xcconfig";
+			shellScript = "GIT_BIN=\"/usr/local/git/bin/git\"\nBUILD_NUMBER=`${GIT_BIN} rev-list HEAD | wc -l`\n\necho \"CURRENT_PROJECT_VERSION = ${BUILD_NUMBER}\" > version.xcconfig";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -233,6 +238,7 @@
 			files = (
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				256AC3DA0F4B6AC300CF3369 /* GSDesktopHelperAppDelegate.m in Sources */,
+				03CA03FE11B2135D00836DF4 /* GSApplication.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
