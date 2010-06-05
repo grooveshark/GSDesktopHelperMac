@@ -46,4 +46,8 @@
 	[super sendEvent:theEvent];
 }
 
+- (NSString *) bundleVersionNumber {
+	return [NSString stringWithFormat:@"%@ (%@)",[[[NSBundle mainBundle] infoDictionary] valueForKey:@"CFBundleShortVersionString"], [[[NSBundle mainBundle] infoDictionary] valueForKey:@"CFBundleVersion"]];
+}
+
 @end

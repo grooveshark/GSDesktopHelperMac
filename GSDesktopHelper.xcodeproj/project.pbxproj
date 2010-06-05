@@ -10,12 +10,12 @@
 		030369F711AE1B2B006214C8 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 030369F611AE1B2B006214C8 /* Sparkle.framework */; };
 		03036A1011AE1BD1006214C8 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 030369F611AE1B2B006214C8 /* Sparkle.framework */; };
 		03036A1511AE1D6F006214C8 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 03036A1411AE1D6F006214C8 /* dsa_pub.pem */; };
+		03263C0C11B9F95F004D36CE /* Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 03263C0B11B9F95F004D36CE /* Icon.icns */; };
 		03931B3211ABFD00002E1724 /* Defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 03931B3111ABFD00002E1724 /* Defaults.plist */; };
 		03C530C111B03D6900AD3A2E /* version.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 03C530C011B03D6900AD3A2E /* version.xcconfig */; };
 		03CA03FE11B2135D00836DF4 /* GSApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CA03FD11B2135D00836DF4 /* GSApplication.m */; };
 		03EA2DBE11A8C7C00056AD8A /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03EA2DBD11A8C7C00056AD8A /* Carbon.framework */; };
 		03EA2F0311A9D8860056AD8A /* gs16.png in Resources */ = {isa = PBXBuildFile; fileRef = 03EA2F0211A9D8860056AD8A /* gs16.png */; };
-		03EA2F0511A9D8940056AD8A /* Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 03EA2F0411A9D8940056AD8A /* Icon.icns */; };
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
 		256AC3DA0F4B6AC300CF3369 /* GSDesktopHelperAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 256AC3D90F4B6AC300CF3369 /* GSDesktopHelperAppDelegate.m */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
@@ -39,13 +39,13 @@
 /* Begin PBXFileReference section */
 		030369F611AE1B2B006214C8 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		03036A1411AE1D6F006214C8 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
+		03263C0B11B9F95F004D36CE /* Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Icon.icns; sourceTree = "<group>"; };
 		03931B3111ABFD00002E1724 /* Defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Defaults.plist; sourceTree = "<group>"; };
 		03C530C011B03D6900AD3A2E /* version.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = version.xcconfig; sourceTree = "<group>"; };
 		03CA03FC11B2135D00836DF4 /* GSApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSApplication.h; sourceTree = "<group>"; };
 		03CA03FD11B2135D00836DF4 /* GSApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSApplication.m; sourceTree = "<group>"; };
 		03EA2DBD11A8C7C00056AD8A /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		03EA2F0211A9D8860056AD8A /* gs16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gs16.png; sourceTree = "<group>"; };
-		03EA2F0411A9D8940056AD8A /* Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Icon.icns; sourceTree = "<group>"; };
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
@@ -137,9 +137,9 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				03263C0B11B9F95F004D36CE /* Icon.icns */,
 				03036A1411AE1D6F006214C8 /* dsa_pub.pem */,
 				03931B3111ABFD00002E1724 /* Defaults.plist */,
-				03EA2F0411A9D8940056AD8A /* Icon.icns */,
 				03EA2F0211A9D8860056AD8A /* gs16.png */,
 				8D1107310486CEB800E47090 /* GSDesktopHelper-Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
@@ -206,10 +206,10 @@
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
 				03EA2F0311A9D8860056AD8A /* gs16.png in Resources */,
-				03EA2F0511A9D8940056AD8A /* Icon.icns in Resources */,
 				03931B3211ABFD00002E1724 /* Defaults.plist in Resources */,
 				03036A1511AE1D6F006214C8 /* dsa_pub.pem in Resources */,
 				03C530C111B03D6900AD3A2E /* version.xcconfig in Resources */,
+				03263C0C11B9F95F004D36CE /* Icon.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -248,4 +248,10 @@ OSStatus MyHotKeyHandler(EventHandlerCallRef nextHandler, EventRef theEvent, voi
 	printToAPIFile(withAction);
 }
 
+- (IBAction)openLink:(id)sender {
+	NSURL *moreInfoURL = [[NSURL alloc] initWithString:@"http://threestrangedays.net/gsdesktophelper"];
+	[[NSWorkspace sharedWorkspace] openURL:[moreInfoURL absoluteURL]];
+	[moreInfoURL release];
+}
+
 @end

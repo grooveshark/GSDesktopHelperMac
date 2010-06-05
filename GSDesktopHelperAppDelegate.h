@@ -28,6 +28,7 @@
 - (IBAction)startAtLogin:(id)sender;
 - (IBAction)mediaKeys:(id)sender;
 - (IBAction)globalKeys:(id)sender;
+- (IBAction)openLink:(id)sender;
 - (void)registerHotKeys:(BOOL)registerKeys;
 - (void)printToAPIFile:(NSString *)withAction;
 

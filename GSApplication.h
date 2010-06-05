@@ -14,4 +14,6 @@
 
 }
 
+- (NSString *) bundleVersionNumber;
+
 @end
