@@ -155,16 +155,52 @@ OSStatus MyHotKeyHandler(EventHandlerCallRef nextHandler, EventRef theEvent, voi
 	}
 }
 
+CGEventRef myCGEventCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef event, void *refcon) {
+	//Paranoid sanity check.
+	if (type != NX_SYSDEFINED) {
+		return event;
+	}
+	
+	NSEvent *e = [NSEvent eventWithCGEvent:event];
+	
+	//We're getting a special event
+	if ([e type] == NSSystemDefined && [e subtype] == 8) {
+		if ([e data1] == 1051136) {
+			printToAPIFile(@"playpause\n");
+			return NULL;
+		} else if ([e data1] == 1313280) {
+			printToAPIFile(@"previous\n");
+			return NULL;
+		} else if ([e data1] == 1247744) {
+			printToAPIFile(@"next\n");
+			return NULL;
+		}
+	}
+	
+	return event;
+}
+
+- (void) setupEvents {
+	// Create an event tap. We are interested in system defined keys.
+	eventTap = CGEventTapCreate(kCGSessionEventTap, kCGHeadInsertEventTap, 0, CGEventMaskBit(NX_SYSDEFINED), myCGEventCallback, NULL);
+	// Create a run loop source
+	CFRunLoopSourceRef runLoopSource = CFMachPortCreateRunLoopSource(kCFAllocatorDefault, eventTap, 0);
+	//Add to the current run loop.
+	CFRunLoopAddSource(CFRunLoopGetCurrent(), runLoopSource, kCFRunLoopCommonModes);
+}
+
 - (void)registerMediaKeys:(BOOL)registerKeys {
 	if (registerKeys == YES) {
 		if (mediaKeyRegistered == NO) {
 			mediaKeyRegistered = YES;
+			CGEventTapEnable(eventTap, true);
 			[[NSUserDefaults standardUserDefaults] setBool:1 forKey:@"EnableMediaKeys"];
 			[mi_mediaKeys setState:NSOnState];
 		}
 	} else if (registerKeys == NO) {
 		if (mediaKeyRegistered == YES) {
 			mediaKeyRegistered = NO;
+			CGEventTapEnable(eventTap, false);
 			[[NSUserDefaults standardUserDefaults] setBool:0 forKey:@"EnableMediaKeys"];
 			[mi_mediaKeys setState:NSOffState];
 		}
@@ -187,6 +223,8 @@ OSStatus MyHotKeyHandler(EventHandlerCallRef nextHandler, EventRef theEvent, voi
 	
 	[statusItem setMenu:statusMenu];
 	hotKeyRegistered = NO;
+	mediaKeyRegistered = NO;
+	[self setupEvents];
 	[self registerHotKeys:[[NSUserDefaults standardUserDefaults] boolForKey:@"EnableGlobalKeys"]];
 	[self registerMediaKeys:[[NSUserDefaults standardUserDefaults] boolForKey:@"EnableMediaKeys"]];
 	if (![[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]) {

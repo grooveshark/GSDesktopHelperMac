@@ -22,6 +22,7 @@
 	BOOL loadAtLogin;
 	BOOL firstLaunch;
 	NSString *bundlePath;
+	CFMachPortRef eventTap;
 }
 
 - (IBAction)showGrooveshark:(id)sender;
