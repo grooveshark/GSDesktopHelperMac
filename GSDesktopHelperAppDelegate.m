@@ -156,8 +156,16 @@ OSStatus MyHotKeyHandler(EventHandlerCallRef nextHandler, EventRef theEvent, voi
 }
 
 CGEventRef myCGEventCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef event, void *refcon) {
+	GSDesktopHelperAppDelegate *appDelegate = (GSDesktopHelperAppDelegate *)refcon;
+	return [appDelegate processEvent:event withType:type];
+}
+
+- (CGEventRef) processEvent:(CGEventRef)event withType:(CGEventType)type {
 	//Paranoid sanity check.
 	if (type != NX_SYSDEFINED) {
+		return event;
+	} else if (type == kCGEventTapDisabledByTimeout) {
+		CGEventTapEnable(eventTap, YES);
 		return event;
 	}
 	
@@ -182,7 +190,7 @@ CGEventRef myCGEventCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef
 
 - (void) setupEvents {
 	// Create an event tap. We are interested in system defined keys.
-	eventTap = CGEventTapCreate(kCGSessionEventTap, kCGHeadInsertEventTap, 0, CGEventMaskBit(NX_SYSDEFINED), myCGEventCallback, NULL);
+	eventTap = CGEventTapCreate(kCGSessionEventTap, kCGHeadInsertEventTap, 0, CGEventMaskBit(NX_SYSDEFINED), myCGEventCallback, self);
 	// Create a run loop source
 	CFRunLoopSourceRef runLoopSource = CFMachPortCreateRunLoopSource(kCFAllocatorDefault, eventTap, 0);
 	//Add to the current run loop.
@@ -287,6 +295,7 @@ CGEventRef myCGEventCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef
 }
 
 - (IBAction)openLink:(id)sender {
+	[mi_firstLaunch close];
 	NSURL *moreInfoURL = [[NSURL alloc] initWithString:@"http://threestrangedays.net/gsdesktophelper"];
 	[[NSWorkspace sharedWorkspace] openURL:[moreInfoURL absoluteURL]];
 	[moreInfoURL release];

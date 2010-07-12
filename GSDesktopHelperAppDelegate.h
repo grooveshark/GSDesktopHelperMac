@@ -32,5 +32,6 @@
 - (IBAction)openLink:(id)sender;
 - (void)registerHotKeys:(BOOL)registerKeys;
 - (void)printToAPIFile:(NSString *)withAction;
+- (CGEventRef) processEvent:(CGEventRef)event withType:(CGEventType)type;
 
 @end
