@@ -162,15 +162,15 @@ CGEventRef myCGEventCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef
 
 - (CGEventRef) processEvent:(CGEventRef)event withType:(CGEventType)type {
 	//Paranoid sanity check.
-	if (type != NX_SYSDEFINED) {
-		return event;
-	} else if (type == kCGEventTapDisabledByTimeout) {
+	if (type == kCGEventTapDisabledByTimeout) {
+		NSLog(@"Re-enabling event");
 		CGEventTapEnable(eventTap, YES);
+		return event;
+	} else if (type != NX_SYSDEFINED) {
 		return event;
 	}
 	
 	NSEvent *e = [NSEvent eventWithCGEvent:event];
-	
 	//We're getting a special event
 	if ([e type] == NSSystemDefined && [e subtype] == 8) {
 		if ([e data1] == 1051136) {
@@ -299,6 +299,10 @@ CGEventRef myCGEventCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef
 	NSURL *moreInfoURL = [[NSURL alloc] initWithString:@"http://threestrangedays.net/gsdesktophelper"];
 	[[NSWorkspace sharedWorkspace] openURL:[moreInfoURL absoluteURL]];
 	[moreInfoURL release];
+}
+
+- (IBAction)openPreferencesWindow:(id)sender {
+	[NSBundle loadNibNamed:@"PreferencePane" owner:self];
 }
 
 @end

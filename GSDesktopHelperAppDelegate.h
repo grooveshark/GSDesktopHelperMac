@@ -17,6 +17,7 @@
 	IBOutlet NSMenuItem *mi_mediaKeys;
 	IBOutlet NSMenuItem *mi_globalKeys;
 	IBOutlet NSWindow *mi_firstLaunch;
+	IBOutlet NSWindow *mi_preferenceWindow;
 	BOOL hotKeyRegistered;
 	BOOL mediaKeyRegistered;
 	BOOL loadAtLogin;
@@ -26,6 +27,7 @@
 }
 
 - (IBAction)showGrooveshark:(id)sender;
+- (IBAction)openPreferencesWindow:(id)sender;
 - (IBAction)startAtLogin:(id)sender;
 - (IBAction)mediaKeys:(id)sender;
 - (IBAction)globalKeys:(id)sender;

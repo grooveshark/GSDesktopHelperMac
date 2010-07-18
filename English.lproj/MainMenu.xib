@@ -12,8 +12,8 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="631"/>
 			<integer value="533"/>
+			<integer value="631"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -110,6 +110,14 @@
 					<object class="NSMenuItem" id="369925949">
 						<reference key="NSMenu" ref="334643092"/>
 						<string key="NSTitle">Check for Updates...</string>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<reference key="NSOnImage" ref="532137915"/>
+						<reference key="NSMixedImage" ref="302252245"/>
+					</object>
+					<object class="NSMenuItem" id="566837327">
+						<reference key="NSMenu" ref="334643092"/>
+						<string key="NSTitle">Preferences...</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<reference key="NSOnImage" ref="532137915"/>
@@ -738,6 +746,14 @@
 					</object>
 					<int key="connectionID">718</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">openPreferencesWindow:</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="566837327"/>
+					</object>
+					<int key="connectionID">720</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -790,6 +806,7 @@
 							<reference ref="833813316"/>
 							<reference ref="188644724"/>
 							<reference ref="369925949"/>
+							<reference ref="566837327"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">statusItem</string>
@@ -1190,6 +1207,11 @@
 						<reference key="object" ref="629534615"/>
 						<reference key="parent" ref="768290898"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">719</int>
+						<reference key="object" ref="566837327"/>
+						<reference key="parent" ref="334643092"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -1255,11 +1277,12 @@
 					<string>696.IBPluginDependency</string>
 					<string>716.IBPluginDependency</string>
 					<string>717.IBPluginDependency</string>
+					<string>719.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{1129, 766}, {191, 163}}</string>
+					<string>{{1016, 727}, {191, 183}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -1275,6 +1298,7 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{{516, 417}, {446, 462}}</string>
 					<boolean value="NO"/>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -1335,7 +1359,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">718</int>
+			<int key="maxID">720</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1350,11 +1374,13 @@
 							<string>globalKeys:</string>
 							<string>mediaKeys:</string>
 							<string>openLink:</string>
+							<string>openPreferencesWindow:</string>
 							<string>showGrooveshark:</string>
 							<string>startAtLogin:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -1369,6 +1395,7 @@
 							<string>mi_firstLaunch</string>
 							<string>mi_globalKeys</string>
 							<string>mi_mediaKeys</string>
+							<string>mi_preferenceWindow</string>
 							<string>mi_showGrooveshark</string>
 							<string>mi_startAtLogin</string>
 							<string>statusMenu</string>
@@ -1378,6 +1405,7 @@
 							<string>NSWindow</string>
 							<string>NSMenuItem</string>
 							<string>NSMenuItem</string>
+							<string>NSWindow</string>
 							<string>NSMenuItem</string>
 							<string>NSMenuItem</string>
 							<string>NSMenu</string>
