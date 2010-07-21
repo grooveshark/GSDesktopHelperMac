@@ -8,6 +8,7 @@
 
 #import "GSDesktopHelperAppDelegate.h"
 #import <Carbon/Carbon.h>
+#import <ShortcutRecorder/ShortcutRecorder.h>
 
 @implementation GSDesktopHelperAppDelegate
 
@@ -132,13 +133,12 @@ OSStatus MyHotKeyHandler(EventHandlerCallRef nextHandler, EventRef theEvent, voi
 			EventHotKeyID favoriteSong = {'gsur', 5};
 			EventHotKeyID songToast = {'gsur', 6};
 			
-			//InstallApplicationEventHandler(&MyHotKeyHandler,1,&eventType,NULL,NULL);
-			RegisterEventHotKey([[[[NSUserDefaults standardUserDefaults] dictionaryForKey:@"PreviousKey"] objectForKey:@"Code"] intValue], [[[[NSUserDefaults standardUserDefaults] dictionaryForKey:@"PreviousKey"] objectForKey:@"Modifier"] intValue], previousSong, GetApplicationEventTarget(), 0, &eventHotKeyRef[0]);
-			RegisterEventHotKey([[[[NSUserDefaults standardUserDefaults] dictionaryForKey:@"NextKey"] objectForKey:@"Code"] intValue], [[[[NSUserDefaults standardUserDefaults] dictionaryForKey:@"NextKey"] objectForKey:@"Modifier"] intValue], nextSong, GetApplicationEventTarget(), 0, &eventHotKeyRef[1]);
-			RegisterEventHotKey([[[[NSUserDefaults standardUserDefaults] dictionaryForKey:@"PlayPauseKey"] objectForKey:@"Code"] intValue], [[[[NSUserDefaults standardUserDefaults] dictionaryForKey:@"PlayPauseKey"] objectForKey:@"Modifier"] intValue], playPause, GetApplicationEventTarget(), 0, &eventHotKeyRef[2]);
-			RegisterEventHotKey([[[[NSUserDefaults standardUserDefaults] dictionaryForKey:@"ShuffleKey"] objectForKey:@"Code"] intValue], [[[[NSUserDefaults standardUserDefaults] dictionaryForKey:@"ShuffleKey"] objectForKey:@"Modifier"] intValue], toggleShuffle, GetApplicationEventTarget(), 0, &eventHotKeyRef[3]);
-			RegisterEventHotKey([[[[NSUserDefaults standardUserDefaults] dictionaryForKey:@"FavoriteKey"] objectForKey:@"Code"] intValue], [[[[NSUserDefaults standardUserDefaults] dictionaryForKey:@"FavoriteKey"] objectForKey:@"Modifier"] intValue], favoriteSong, GetApplicationEventTarget(), 0, &eventHotKeyRef[4]);
-			RegisterEventHotKey([[[[NSUserDefaults standardUserDefaults] dictionaryForKey:@"SongToastKey"] objectForKey:@"Code"] intValue], [[[[NSUserDefaults standardUserDefaults] dictionaryForKey:@"SongToastKey"] objectForKey:@"Modifier"] intValue], songToast, GetApplicationEventTarget(), 0, &eventHotKeyRef[5]);
+			RegisterEventHotKey([[[[NSUserDefaults standardUserDefaults] arrayForKey:@"PreviousKey"] objectAtIndex:0] intValue], SRCocoaToCarbonFlags([[[[NSUserDefaults standardUserDefaults] arrayForKey:@"PreviousKey"] objectAtIndex:1] intValue]), previousSong, GetApplicationEventTarget(), 0, &eventHotKeyRef[0]);
+			RegisterEventHotKey([[[[NSUserDefaults standardUserDefaults] arrayForKey:@"NextKey"] objectAtIndex:0] intValue], SRCocoaToCarbonFlags([[[[NSUserDefaults standardUserDefaults] arrayForKey:@"NextKey"] objectAtIndex:1] intValue]), nextSong, GetApplicationEventTarget(), 0, &eventHotKeyRef[1]);
+			RegisterEventHotKey([[[[NSUserDefaults standardUserDefaults] arrayForKey:@"PlayPauseKey"] objectAtIndex:0] intValue], SRCocoaToCarbonFlags([[[[NSUserDefaults standardUserDefaults] arrayForKey:@"PlayPauseKey"] objectAtIndex:1] intValue]), playPause, GetApplicationEventTarget(), 0, &eventHotKeyRef[2]);
+			RegisterEventHotKey([[[[NSUserDefaults standardUserDefaults] arrayForKey:@"ShuffleKey"] objectAtIndex:0] intValue], SRCocoaToCarbonFlags([[[[NSUserDefaults standardUserDefaults] arrayForKey:@"ShuffleKey"] objectAtIndex:1] intValue]), toggleShuffle, GetApplicationEventTarget(), 0, &eventHotKeyRef[3]);
+			RegisterEventHotKey([[[[NSUserDefaults standardUserDefaults] arrayForKey:@"FavoriteKey"] objectAtIndex:0] intValue], SRCocoaToCarbonFlags([[[[NSUserDefaults standardUserDefaults] arrayForKey:@"FavoriteKey"] objectAtIndex:1] intValue]), favoriteSong, GetApplicationEventTarget(), 0, &eventHotKeyRef[4]);
+			RegisterEventHotKey([[[[NSUserDefaults standardUserDefaults] arrayForKey:@"SongToastKey"] objectAtIndex:0] intValue], SRCocoaToCarbonFlags([[[[NSUserDefaults standardUserDefaults] arrayForKey:@"SongToastKey"] objectAtIndex:1] intValue]), songToast, GetApplicationEventTarget(), 0, &eventHotKeyRef[5]);
 			hotKeyRegistered = YES;
 			[[NSUserDefaults standardUserDefaults] setBool:1 forKey:@"EnableGlobalKeys"];
 			[mi_globalKeys setState:NSOnState];
@@ -163,7 +163,6 @@ CGEventRef myCGEventCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef
 - (CGEventRef) processEvent:(CGEventRef)event withType:(CGEventType)type {
 	//Paranoid sanity check.
 	if (type == kCGEventTapDisabledByTimeout) {
-		NSLog(@"Re-enabling event");
 		CGEventTapEnable(eventTap, YES);
 		return event;
 	} else if (type != NX_SYSDEFINED) {
@@ -223,6 +222,7 @@ CGEventRef myCGEventCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef
 		loadAtLogin = YES;
 		[mi_startAtLogin setState:NSOnState];
 	}
+	[[NSAppleEventManager sharedAppleEventManager] setEventHandler:self andSelector:@selector(handleURLEvent:withReplyEvent:) forEventClass:kInternetEventClass andEventID:kAEGetURL];
 	
 	statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSSquareStatusItemLength] retain];
 	NSImage *statusImage = [NSImage imageNamed:@"gs16.png"];
@@ -240,6 +240,12 @@ CGEventRef myCGEventCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef
 		[[NSUserDefaults standardUserDefaults] setBool:1 forKey:@"HasLaunchedOnce"];
 		[[NSUserDefaults standardUserDefaults] synchronize];
 	}
+}
+
+- (void)handleURLEvent:(NSAppleEventDescriptor*)event withReplyEvent:(NSAppleEventDescriptor*)replyEvent {
+	NSString *url = [[event paramDescriptorForKeyword:keyDirectObject] stringValue];
+	printToAPIFile([NSString stringWithFormat:@"Protocol %@\n", url]);
+	[self showGrooveshark:self];
 }
 
 - (IBAction)showGrooveshark:(id)sender {

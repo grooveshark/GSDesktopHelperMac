@@ -35,5 +35,6 @@
 - (void)registerHotKeys:(BOOL)registerKeys;
 - (void)printToAPIFile:(NSString *)withAction;
 - (CGEventRef) processEvent:(CGEventRef)event withType:(CGEventType)type;
+- (void)handleURLEvent:(NSAppleEventDescriptor*)event withReplyEvent:(NSAppleEventDescriptor*)replyEvent;
 
 @end

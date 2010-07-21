@@ -11,7 +11,9 @@
 		03036A1011AE1BD1006214C8 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 030369F611AE1B2B006214C8 /* Sparkle.framework */; };
 		03036A1511AE1D6F006214C8 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 03036A1411AE1D6F006214C8 /* dsa_pub.pem */; };
 		03263C0C11B9F95F004D36CE /* Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 03263C0B11B9F95F004D36CE /* Icon.icns */; };
+		03904F2011F6B95400081771 /* ShortcutRecorder.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 039F679C11F6B8D000E9F9F3 /* ShortcutRecorder.framework */; };
 		03931B3211ABFD00002E1724 /* Defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 03931B3111ABFD00002E1724 /* Defaults.plist */; };
+		039F679D11F6B8D000E9F9F3 /* ShortcutRecorder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 039F679C11F6B8D000E9F9F3 /* ShortcutRecorder.framework */; };
 		03C530C111B03D6900AD3A2E /* version.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 03C530C011B03D6900AD3A2E /* version.xcconfig */; };
 		03CA03FE11B2135D00836DF4 /* GSApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CA03FD11B2135D00836DF4 /* GSApplication.m */; };
 		03EA2DBE11A8C7C00056AD8A /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03EA2DBD11A8C7C00056AD8A /* Carbon.framework */; };
@@ -31,6 +33,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				03904F2011F6B95400081771 /* ShortcutRecorder.framework in CopyFiles */,
 				03036A1011AE1BD1006214C8 /* Sparkle.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -42,6 +45,7 @@
 		03036A1411AE1D6F006214C8 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		03263C0B11B9F95F004D36CE /* Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Icon.icns; sourceTree = "<group>"; };
 		03931B3111ABFD00002E1724 /* Defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Defaults.plist; sourceTree = "<group>"; };
+		039F679C11F6B8D000E9F9F3 /* ShortcutRecorder.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShortcutRecorder.framework; sourceTree = "<group>"; };
 		03C530C011B03D6900AD3A2E /* version.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = version.xcconfig; sourceTree = "<group>"; };
 		03CA03FC11B2135D00836DF4 /* GSApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSApplication.h; sourceTree = "<group>"; };
 		03CA03FD11B2135D00836DF4 /* GSApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSApplication.m; sourceTree = "<group>"; };
@@ -70,6 +74,7 @@
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				03EA2DBE11A8C7C00056AD8A /* Carbon.framework in Frameworks */,
 				030369F711AE1B2B006214C8 /* Sparkle.framework in Frameworks */,
+				039F679D11F6B8D000E9F9F3 /* ShortcutRecorder.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,6 +95,7 @@
 			children = (
 				030369F611AE1B2B006214C8 /* Sparkle.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
+				039F679C11F6B8D000E9F9F3 /* ShortcutRecorder.framework */,
 			);
 			name = "Linked Frameworks";
 			sourceTree = "<group>";
@@ -285,7 +291,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
-					"\"$(SRCROOT)/../../Downloads/shortcutrecorder/build/Release\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -308,7 +313,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
-					"\"$(SRCROOT)/../../Downloads/shortcutrecorder/build/Release\"",
 				);
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

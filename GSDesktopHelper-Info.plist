@@ -19,7 +19,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.2.3</string>
+	<string>0.2.4</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>${MACOSX_DEPLOYMENT_TARGET}</string>
 	<key>CFBundleVersion</key>
@@ -40,5 +40,16 @@
 	<true/>
 	<key>SUScheduledCheckInterval</key>
 	<integer>604800</integer>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>GSDesktopHelper</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>gs</string>
+			</array>
+		</dict>
+	</array>
 </dict>
 </plist>
