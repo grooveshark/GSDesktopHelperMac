@@ -231,7 +231,8 @@ CGEventRef myCGEventCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef
 	
 	[statusItem setMenu:statusMenu];
 	hotKeyRegistered = NO;
-	mediaKeyRegistered = NO;
+	mediaKeyRegistered = YES;
+	[mi_mediaKeys setState:NSOnState];
 	[self setupEvents];
 	[self registerHotKeys:[[NSUserDefaults standardUserDefaults] boolForKey:@"EnableGlobalKeys"]];
 	[self registerMediaKeys:[[NSUserDefaults standardUserDefaults] boolForKey:@"EnableMediaKeys"]];
